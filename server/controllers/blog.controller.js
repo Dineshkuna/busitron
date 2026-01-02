@@ -3,12 +3,14 @@ import Blog from '../models/blog.model.js';
 
 export const createBlog = async (req, res, next)=> {
     const { title, content, topic } = req.body; 
+    const userId = req.userId;
     
 
 
     try {
+        const user = await user.findById(userId);
         let blog = new Blog({
-            topic, title, content
+            topic, title, content,user: {id: userId, name: user.name}
         });
 
         await blog.save();

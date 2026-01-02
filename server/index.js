@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import blogroutes from './routes/blog.routes.js';
+import blogroute from './routes/blog.routes.js';
+import userroute from './routes/user.routes.js';
 
 dotenv.config();
 
@@ -11,7 +12,11 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cookieParser());
+
+
 
 app.use(cors({
   origin: ['http://localhost:3000'],
@@ -19,7 +24,8 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 }));
 
-app.use('/blog', blogroutes); 
+app.use('/blog', blogroute);
+app.use('/user', userroute); 
 
 console.log("Mongo URI:", process.env.MONGO_URI); // DEBUG
  
