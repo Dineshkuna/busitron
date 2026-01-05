@@ -1,0 +1,5 @@
+
+npx-create-react-app - This command is create the react app
+
+npm i bootstrap , react-router-dom - required packages
+
