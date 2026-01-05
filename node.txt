@@ -1,3 +1,73 @@
+
+.env -  environment variables  
+ - security tokens we are save into url 
+
+ - mongodb url
+ - ssl access
+
+
+ index.js - The browser can understand easily ,it is root file of the application
+
+
+ express - It is help shortfy the code 
+
+ cookieparas -  authentication , authorization  handle 
+
+ cors - cross browser resource sharing , we are sharing the data for different port , we out coming the distrubance we use this.
+
+
+mongoose -  It is use to create the orm for mongodb
+
+json web token -  it is helped to create the  tokens for authorization 
+
+nodemon -  It will detect the changes inside our server file it restart and restop.
+
+
+dotenv -  we need to update our file by config env that's why we install  dotenv
+
+
+====
+
+
+npm init -y 
+
+npm i express bcryptjs cookie-parser cors jsonwebtoken mongoose mongodb nodemon dotenv
+
+
+=========
+
+
+Add in the package 
+
+- "start": "nodemon index.js" - it is help to  start file automatically 
+
+- "type" :"module", - we are familiar with import and export for that purpose we need the type module . 
+
+======
+
+
+now we are starting the file 
+
+- first we need to import the all packages 
+- config the dotenv
+
+- note the port 
+- call the express it is the package provide the function at end.
+
+-middleware is used for input and output the function , the use is the middleware it always excute the function.
+
+- First connect your database then u start your server
+
+
+=======
+
+- models  - models means how to allow you how to store the data in database , how get the data in database. and how suppose to work with the data.
+
+- controls -  it holds the business logic ,  it is functions which will be excute the api's 
+
+- views - It is the visiblity of UI
+
+
 scheme - scheme is how to store the data 
 
 next - next means we can run the next function
