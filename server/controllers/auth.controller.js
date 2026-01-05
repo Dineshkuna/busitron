@@ -46,7 +46,7 @@ export const login = async(req, res, next) => {
         const matchpassword = await bcrypt.compare(req.body.password, user.password);
 
         if(!matchpassword) {
-            res.status(400).json({success: false, message: "Wrong password"});
+            return res.status(400).json({success: false, message: "Wrong password"});
         }
 
 
@@ -65,7 +65,7 @@ export const login = async(req, res, next) => {
 
         const {password, role, ...rest} = user._doc;
 
-        res.status(200).json({ success:true, message: "Login done", token, data: {...rest},role})
+        return res.status(200).json({ success:true, message: "Login done", token, data: {...rest},role})
 
  
 
@@ -73,5 +73,69 @@ export const login = async(req, res, next) => {
     }catch (error) {
         console.log(error);
         res.status(500).json({success: false, message: "Login Error"});
+    }
+}
+
+
+export const updateUserProfile = async(req, res, next) => {
+    const userId = req.params.id;
+
+    try {
+        const updateUser = await User.findByIdAndUpdate(userId, {$set: req.body}, {new: true});
+
+        return res.status(200).json({success: true, message: "User profile updated!" })
+
+    }catch (error) {
+        return res.json({success: false, message: "Updatedprofile details Error"});
+ 
+    }
+}
+
+
+export const deleteUserProfile = async(req, res, next) => {
+    const userId =  req.params.id;
+
+    try {
+        await User.findByIdAndDelete(userId);
+        return res.status(200).json({
+            success: true, message: "User profile deleted successfully"
+        })
+        
+
+
+    }catch(error) {
+        return res.status(500).json({
+            success: false, message: "delete user profile error"
+        })
+    }
+
+}
+
+
+export const allusers = async(req, res, next) => {
+
+    try {
+        const users = await User.find({}).select("-password");
+        return res.status(200).json({success: true, message: "All users found", data: users})
+
+
+    }catch (error) {
+        return res.status(500).json({success: false, message:" All users fetching error"});
+
+    }
+}
+
+
+export const singleUser =  async(req, res, next) => {
+    const userId = req.params.id;
+    try {
+        const user = await User.findById(userId);
+
+        const {password, ...rest} = user._doc;
+        return res.status(200).json({success: true, message: "Single user found", data: {...rest}});
+
+
+    }catch(error) {
+        return res.status(500).json({success: false, message: "Single user fetching error"})
     }
 }

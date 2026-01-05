@@ -38,9 +38,9 @@ export const roleRoute = (roles) =>async(req, res, next) => {
 
     const userRole = user.role;
 
-    if(userRole === "user") {
+    if(userRole === "user" && roles.includes("user")) {
         next();
-    }else if (userRole === admin) {
+    }else if (userRole === "admin" && roles.includes("admin")) {
         next();
     }else {
         return res.status(401).json({success: false, message: "You are not authorized to access this route"});
