@@ -1,14 +1,18 @@
 import Blog from '../models/blog.model.js';
+import User from '../models/user.model.js';
 
 
 export const createBlog = async (req, res, next)=> {
     const { title, content, topic } = req.body; 
     const userId = req.userId;
+    console.log(userId);
+    const user = await User.findById(userId);
+    console.log(user);
     
 
 
     try {
-        const user = await user.findById(userId);
+        
         let blog = new Blog({
             topic, title, content,user: {id: userId, name: user.name}
         });
@@ -17,6 +21,8 @@ export const createBlog = async (req, res, next)=> {
         res.status(200).json({success: true, message: "Blog created"});
 
     } catch (error) {
+        console.log(error);
+        
         res.status(500).json({success: false, message: "Server Error"});
         
     }
