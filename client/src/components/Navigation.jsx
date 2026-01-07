@@ -25,7 +25,7 @@ const Navigation = () => {
       <form class="d-flex">
         
         <Link class="btn btn-outline-success" type="submit" to='/register'>Register</Link>
-        {/* <button class="btn btn-outline-success" type="submit">Search</button> */}
+        <Link class="btn btn-outline-dark ms-2" type="submit" to='/login'>Login</Link>
       </form>
     </div>
   </div>

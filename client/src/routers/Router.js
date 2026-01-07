@@ -3,6 +3,7 @@ import {Routes,Route} from 'react-router-dom';
 import Home from "../components/Home";
 import SingleBlog from "../components/SingleBlog";
 import Register from "../components/Register";
+import Login from "../components/Login";
 
 const Router = () => {
     return (
@@ -10,6 +11,7 @@ const Router = () => {
             <Route path = '/' element = {<Home />} />
             <Route path = '/singleblog/:id' element = {<SingleBlog />} />
             <Route path='/register' element = {<Register/>} />
+            <Route path='/login' element = {<Login/>} />
 
     
         </Routes>
