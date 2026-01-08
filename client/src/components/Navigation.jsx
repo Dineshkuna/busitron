@@ -37,7 +37,7 @@ const Navigation = () => {
 
         {
           user ? (<>
-          <Link class="btn btn-outline-info" type="submit" >{user.name}</Link>
+          <Link class="btn btn-outline-info" type="submit" to={`/user/${user._id}`} >{user.name}</Link>
           <button class="btn btn-outline-danger ms-2" type="submit" onClick={logout} >Logout</button>
 
           
