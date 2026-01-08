@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router'
+import { AuthContext } from '../context/AuthContext'
 
 
 const Navigation = () => {
+  const {user, dispatch} = useContext(AuthContext);
+  console.log(user);
+
+  const logout = () => {
+    dispatch({
+      type: "LOGOUT"
+    })
+    window.location.reload();
+  }
+  
   return (
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,10 +33,24 @@ const Navigation = () => {
        
         
       </ul>
-      <form class="d-flex">
-        
-        <Link class="btn btn-outline-success" type="submit" to='/register'>Register</Link>
+      <form class="d-flex" role='search'>
+
+        {
+          user ? (<>
+          <Link class="btn btn-outline-info" type="submit" >{user.name}</Link>
+          <button class="btn btn-outline-danger ms-2" type="submit" onClick={logout} >Logout</button>
+
+          
+          </>) : (<>
+
+          <Link class="btn btn-outline-success" type="submit" to='/register'>Register</Link>
         <Link class="btn btn-outline-dark ms-2" type="submit" to='/login'>Login</Link>
+          
+          
+          </>)
+        }
+        
+        
       </form>
     </div>
   </div>
